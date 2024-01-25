@@ -80,4 +80,3 @@ Using NMR data to determine the spring constant for an elastic network in a coar
 
 Perform short simulations (just a few nanoseconds) with different spring constants and compare the simulated dynamics with the NMR-derived dynamics. 
 
-
