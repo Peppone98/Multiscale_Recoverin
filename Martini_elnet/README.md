@@ -9,7 +9,6 @@ Martinize2 will generate harmonic bonds between backbone beads if the option `-e
 ```
 martinize2 -f nmRec.pdb -o nmRec_el.top -x nmRec_cg_el.pdb -ss ccTTcScccSSTTTSGGGcScScHHHHHHHHHHHHHHSGGGcBcHHHHHHHHHHHSTTcccHHHHHHHHHHHcSSSSSSBcHHHHHHHHHHHccSSSSccHHHHHHHHcSScSScBcHHHHHHHHHHHHHHScHHHHHTSSTTccSHHHHHHHHHHHTTccTTccBcHHHHHHHHHHcHHHHHHHcccHHHHHHHHHcccc -p backbone -ff martini3001 -nt -elastic -ef 500.0 -el 0.5 -eu 0.9
 ```
-Here are some reasons why the cutoff distance in an elastic network is often set to a value around 0.9 nm or smaller: 
 
 Now I manually edit the `.top` file in order to include the two structural Calcium ions. From now on, look at the `system_el.top` file. To avoid unwanted errors of numeration, I labelled the two `CA` residues as residues 202 and 203. The CG coordinates are saved in `system_cg_el.pdb`.
 
@@ -40,7 +39,7 @@ The value 0.21 typically avoids clashes because gromacs will then fill the space
 Gromacs will return you a warning because you are not passing a `.tpr` file (so he doesn't know how to assign the vdw radius).
 
 # Adding the ions
-You first need to update the topology to reflect the added water (`W        13336`). And then you must also add the topology file of the solvent (all these operations aren't done automatically as in groamcs).
+We first need to update the topology to reflect the added water (`W        13336`). Then we must also add the topology file of the solvent (all these operations aren't done automatically as in groamcs).
 ```
 gmx grompp -f mdp/minimization.mdp -c system_solv.gro -p system_el.top -o tpr/ions.tpr
 ```
@@ -74,9 +73,4 @@ gmx mdrun -s ../tpr/equilibration.tpr -v
 gmx grompp -p system_el.top -c equilibration/confout.gro -f mdp/dynamic.mdp -o tpr/dynamic.tpr 
 ```
 
-
-# NMR data 
-Using NMR data to determine the spring constant for an elastic network in a coarse-grained simulation can be a valuable approach to better represent the dynamics of a protein. 
-
-Perform short simulations (just a few nanoseconds) with different spring constants and compare the simulated dynamics with the NMR-derived dynamics. 
 
