@@ -10,7 +10,7 @@ Below, some of the main quantities obtained from the CG simulation.
 
 
 ![Alt text](Martini_elnet/dynamic/pics/RMSF_AA_CG.png)
-*Root Mean Square Fluctuation comparison between all-atom (AA) and coarse-grained (CG) systems*
+*Root Mean Square Fluctuation comparison between all-atom (AA) and coarse-grained (CG) systems.*
 
 
 ![Alt text](Martini_elnet/dynamic/pics/sasa.png)
